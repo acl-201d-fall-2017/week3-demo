@@ -6,28 +6,30 @@ const watermelon = new Fruit('watermelon', 'watermelon.jpg');
 const bomb = new Fruit('bomb', 'bomb.png');
 
 const fruits = [apple,watermelon,bomb];
-const play = setInterval(appendRandomFruit,1000);
+
+for (let i = 0; i < 10; i ++) {
+    appendRandomFruit();
+}
 
 const game = document.getElementById('game');
 game.addEventListener('click', clickHandler);
 
-
-
 function clickHandler (e) {
     const clickedFruit = e.target;
+    console.log(clickedFruit);
 
-    if (clickedFruit.class === 'bomb') {
-        alert('kaboom! game over');
-        endGame();
-    }
+    // if (clickedFruit.class === 'bomb') {
+    //     alert('kaboom! game over');
+    //     endGame();
+    // }
 
-    randomFruit.wasSliced();
-    clickedFruit.remove();
-    clicks++;
+    // randomFruit.wasSliced();
+    // clickedFruit.remove();
+    // clicks++;
 
-    if (clicks > 5) {
-        endGame();
-    }
+    // if (clicks > 5) {
+    //     endGame();
+    // }
 }
 
 function appendRandomFruit () {
@@ -36,11 +38,11 @@ function appendRandomFruit () {
     const randomFruitEle = randomFruit.render();
     game.appendChild(randomFruitEle);
 
-    if (randomFruit.type === 'bomb') {
-        setTimeout(function () {
-            game.removeChild(randomFruitEle);    
-        }, 2000);
-    }
+    // if (randomFruit.type === 'bomb') {
+    //     setTimeout(function () {
+    //         game.removeChild(randomFruitEle);    
+    //     }, 2000);
+    // }
 }
 
 function endGame () {
