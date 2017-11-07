@@ -12,7 +12,6 @@ Fruit.prototype.wasSliced = function () {
 Fruit.prototype.render = function () {
     const ele = document.createElement('img');
     ele.src = this.src;
-    // TODO check if it's adding a class
     ele.classList.add(this.type);
     return ele;
 }

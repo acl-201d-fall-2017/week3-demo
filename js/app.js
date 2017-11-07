@@ -10,33 +10,6 @@ for (let i = 0; i < 10; i ++) {
     appendRandomFruit();
 }
 
-/* attaching event listeners to every image tag */
-// const imgs = document.querySelectorAll('img');
-// console.log( imgs );
-
-// will give each individual img an event listener
-// for (let i = 0; i < imgs.length; i++) {
-    //     imgs[i].addEventListener('click', function (e) {
-        //         console.log('heard by the img', e.target);
-        //     });
-        // }
-        
-
-// will not work because imgs is not a single element
-// imgs.addEventListener('click', clickHandler);
-
-
-/* demo event propagation */
-// const game = document.getElementById('game');
-// const main = document.querySelector('main');
-
-// game.addEventListener('click', function (e) {
-//     console.log('heard by game', e.target);
-// });
-
-// main.addEventListener('click', function (e) {
-//     console.log('heard by main', e.target);
-// });
 
 
 const game = document.getElementById('game');
@@ -65,11 +38,10 @@ function clickHandler (e) {
     
     // increase number of times clicked and if over 5, call endGame()
     clicks++;
-    if (clicks >= 5) {
+    if (clicks >= 2) {
         endGame();
     }
 }
-
 
 
 
@@ -88,4 +60,23 @@ function endGame () {
     game.removeEventListener('click', clickHandler);
 
     console.table(fruits);
+    drawChart();
+}
+
+function drawChart () {
+  // TODO get canvas element and its context
+  const canvas = document.getElementById('endCard');
+  const context = canvas.getContext('2d');
+
+  // TODO add some graphics to our canvas
+  context.fillStyle = 'rgba(200,100,200,1)';
+  context.fillRect(0,0,200,200);
+
+  // TODO add text that says "Game over!"
+  context.font = '20px sans-serif';
+  for (let i = 0; i < 10; i++) {
+      context.strokeText('GAME OVER', 200, 200);
+  }
+
+  // TODO add a chart that shows # of slices per fruit
 }
