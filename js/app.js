@@ -78,5 +78,41 @@ function drawChart () {
       context.strokeText('GAME OVER', 200, 200);
   }
 
+  const fruitNames = [];
+  const slicedData = [];
+
+  for ( let i = 0; i < fruits.length; i++ ){
+      fruitNames.push(fruits[i].type);
+      slicedData.push(fruits[i].sliced);
+
+      console.log( 'fruitNames:', fruitNames );
+      console.log( 'slicedData:', slicedData );
+  }
+
   // TODO add a chart that shows # of slices per fruit
+  const chartCanvas = document.getElementById('chart');
+  const chartCtx = chartCanvas.getContext('2d');
+
+  const chart = new Chart (
+      chartCtx, // first param is the canvas context
+      { // first level children: type, data, options
+          type: 'bar',
+          data: { // data's children: labels, datasets
+              labels: fruitNames, // ['apple','watermelon','bomb'], // y axis labels
+              datasets: [
+                  { // dataset object's children: label, data, backgroundColor
+                      label: 'Number of slices',
+                      data: slicedData, // [5,2,0], // data points
+                      backgroundColor: 'rgba(255,100,20,1)'
+                  }
+              ]
+          },
+          options: {
+              title: {
+                  display: true,
+                  text: 'Fruits Sliced'
+              }
+          }
+      }
+  );
 }
