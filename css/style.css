@@ -1,3 +1,8 @@
+:root {
+    --left-value: 20px;
+    --animation-duration: 2s;
+}
+
 #game {
     display: flex;
     justify-content: space-around;
@@ -8,8 +13,23 @@
 #game img {
     height: 100px;
     width: 100px;
+    animation-name: fly;
+    animation-duration: var(--animation-duration);
+    animation-iteration-count: infinite;
+
+    position: absolute;
+    left: var(--left-value);
 }
 
 #chart-container {
     width: 600px;
+}
+
+@keyframes fly {
+    from {
+        top: 600px;
+    }
+    to {
+        top: 0;
+    }
 }

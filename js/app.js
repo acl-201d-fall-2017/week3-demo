@@ -74,6 +74,8 @@ function appendRandomFruit () {
     // select random fruit object from fruits array, save in randomFruit
     randomFruit = fruits[Math.floor(Math.random() * fruits.length)];
     const randomFruitEle = randomFruit.render(); // returns img element
+    randomFruitEle.style.setProperty('--left-value', Math.floor(Math.random() * 1000) + 'px');
+    randomFruitEle.style.setProperty('--animation-duration', Math.floor(Math.random() * 5) + 's');
     game.appendChild(randomFruitEle);
 }
 
