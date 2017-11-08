@@ -1,29 +1,27 @@
 let clicks = 0;
-
-// TODO
-// if we have fruits in localStorage
-// else
-// create new fruits and put them in our fruits array
-
 let fruits = [];
 
 if (localStorage.fruits) {
     console.log('we has fruit');
-    // get them, instantiate them, and put them in our fruits array
-    // update Fruit.sliced with its number
 
-    // fruitsARray is an arrya of object literals - not Fruits!
+    // if we have fruits in localStorage
+    // get them, instantiate them, and put them in our fruits array
+    
+    // fruitsArray is an array of object literals - not Fruits!
     const fruitsArray = JSON.parse(localStorage.fruits);
     console.log('fruitsArray:', fruitsArray);
-
+    
     for (let i = 0; i < fruitsArray.length; i++) {
         // fruitsArray[i] === {type: 'apple', src: 'apple.png', sliced: 1}
+        // make sure each fruit has an updated sliced properties
         const fruit = new Fruit(fruitsArray[i].type, fruitsArray[i].src, fruitsArray[i].sliced);
         console.log('current fruit:', fruit);
         console.log('fruits array:', fruits)
         fruits.push(fruit);
     }
 } else {
+    // if we don't have stored fruit:
+    // create new fruits and put them in our fruits array
     const apple = new Fruit('apple', './images/apple.png');
     const watermelon = new Fruit('watermelon', './images/watermelon.jpg');
     const bomb = new Fruit('bomb', './images/bomb.png');
