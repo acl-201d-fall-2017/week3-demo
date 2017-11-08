@@ -3,11 +3,29 @@
     --animation-duration: 2s;
 }
 
+main {
+    background-color: black;
+}
+
+h1 {
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: black;
+    text-decoration-style: wavy;
+    background-color: white;
+    font-style: italic;
+    font-family: monospace;
+
+}
+
 #game {
     display: flex;
     justify-content: space-around;
     /* width: 500px; */
-    height: 500px;
+    height: 600px;
+    border: solid black 30px;
+    padding: 25px;
+    background-color: white;
 }
 
 #game img {
@@ -16,13 +34,28 @@
     animation-name: fly;
     animation-duration: var(--animation-duration);
     animation-iteration-count: infinite;
+    animation-timing-function: linear;
 
     position: absolute;
     left: var(--left-value);
 }
 
+#endCard {
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    top: 0;
+    transition: top 2s;
+}
+
+#endCard.done {
+    top: -500px;
+}
+
+
 #chart-container {
     width: 600px;
+    margin: 0 auto;
 }
 
 @keyframes fly {
@@ -30,6 +63,6 @@
         top: 600px;
     }
     to {
-        top: 0;
+        top: 150px;
     }
 }

@@ -74,8 +74,8 @@ function appendRandomFruit () {
     // select random fruit object from fruits array, save in randomFruit
     randomFruit = fruits[Math.floor(Math.random() * fruits.length)];
     const randomFruitEle = randomFruit.render(); // returns img element
-    randomFruitEle.style.setProperty('--left-value', Math.floor(Math.random() * 1000) + 'px');
-    randomFruitEle.style.setProperty('--animation-duration', Math.floor(Math.random() * 5) + 's');
+    randomFruitEle.style.setProperty('--left-value', Math.floor(Math.random() * 1000) + 25 + 'px');
+    randomFruitEle.style.setProperty('--animation-duration', (Math.random() * 1) + 1 +  's');
     game.appendChild(randomFruitEle);
 }
 
@@ -95,6 +95,7 @@ function endGame () {
 function drawChart () {
   // TODO get canvas element and its context
   const canvas = document.getElementById('endCard');
+  canvas.classList.add('done');
   const context = canvas.getContext('2d');
 
   // TODO add some graphics to our canvas
@@ -122,6 +123,7 @@ function drawChart () {
   const chartCanvas = document.getElementById('chart');
   const chartCtx = chartCanvas.getContext('2d');
 
+  Chart.defaults.global.defaultFontColor = '#FFF';
   const chart = new Chart (
       chartCtx, // first param is the canvas context
       { // first level children: type, data, options
