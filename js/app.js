@@ -1,10 +1,35 @@
 let clicks = 0;
 
-const apple = new Fruit('apple', 'apple.png');
-const watermelon = new Fruit('watermelon', 'watermelon.jpg');
-const bomb = new Fruit('bomb', 'bomb.png');
+// TODO
+// if we have fruits in localStorage
+// else
+// create new fruits and put them in our fruits array
 
-const fruits = [apple,watermelon,bomb];
+let fruits = [];
+
+if (localStorage.fruits) {
+    console.log('we has fruit');
+    // get them, instantiate them, and put them in our fruits array
+    // update Fruit.sliced with its number
+
+    // fruitsARray is an arrya of object literals - not Fruits!
+    const fruitsArray = JSON.parse(localStorage.fruits);
+    console.log('fruitsArray:', fruitsArray);
+
+    for (let i = 0; i < fruitsArray.length; i++) {
+        // fruitsArray[i] === {type: 'apple', src: 'apple.png', sliced: 1}
+        const fruit = new Fruit(fruitsArray[i].type, fruitsArray[i].src, fruitsArray[i].sliced);
+        console.log('current fruit:', fruit);
+        console.log('fruits array:', fruits)
+        fruits.push(fruit);
+    }
+} else {
+    const apple = new Fruit('apple', './images/apple.png');
+    const watermelon = new Fruit('watermelon', './images/watermelon.jpg');
+    const bomb = new Fruit('bomb', './images/bomb.png');
+    
+    fruits = [apple,watermelon,bomb];
+}
 
 for (let i = 0; i < 10; i ++) {
     appendRandomFruit();
@@ -38,7 +63,7 @@ function clickHandler (e) {
     
     // increase number of times clicked and if over 5, call endGame()
     clicks++;
-    if (clicks >= 2) {
+    if (clicks >= 4) {
         endGame();
     }
 }
@@ -61,6 +86,10 @@ function endGame () {
 
     console.table(fruits);
     drawChart();
+    // TODO save the fruits in localstorage!
+    // JSON.stringify turns an array of objects into a nice string
+    localStorage.setItem('fruits', JSON.stringify(fruits));
+    // ^ same thing as: localStorage.fruits = fruits;
 }
 
 function drawChart () {
@@ -79,7 +108,7 @@ function drawChart () {
   }
 
   const fruitNames = [];
-  const slicedData = [];
+  const slicedData = []; // [4,2,1]
 
   for ( let i = 0; i < fruits.length; i++ ){
       fruitNames.push(fruits[i].type);
@@ -108,10 +137,17 @@ function drawChart () {
               ]
           },
           options: {
-              title: {
-                  display: true,
-                  text: 'Fruits Sliced'
-              }
+                title: {
+                    display: true,
+                    text: 'Fruits Sliced'
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
           }
       }
   );

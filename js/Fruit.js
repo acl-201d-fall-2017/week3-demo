@@ -1,8 +1,8 @@
 // constructor function for Fruits options
-function Fruit (type, src) {
+function Fruit (type, src, sliced) {
     this.type = type;
-    this.src = './images/' + src;
-    this.sliced = 0;
+    this.src = src;
+    this.sliced = sliced || 0;
 }
 
 Fruit.prototype.wasSliced = function () {
