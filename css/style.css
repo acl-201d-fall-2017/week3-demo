@@ -1,3 +1,9 @@
+/* CSS variables 
+  - allow us to reuse the same values in multiple CSS blocks 
+  - also allow us to edit the variable from js 
+    - note: we can directly set a property from js w/o the variable too
+*/
+
 :root {
     --left-value: 20px;
     --animation-duration: 2s;
@@ -16,6 +22,17 @@ h1 {
     font-style: italic;
     font-family: monospace;
 
+    transition: color 1s ease-in-out, transform 5s;
+}
+
+/* TODO change the color and size on hover */
+h1:hover {
+    color: red;
+    /* transform: rotate(180deg); */
+    transform: rotateX(180deg);
+    /* transform: rotateY(180deg); */
+    /* transform: rotateZ(180deg); */
+    transform-origin: top;
 }
 
 #game {
@@ -28,23 +45,51 @@ h1 {
     background-color: white;
 }
 
+/* TODO animate the fruits so they're flying */
 #game img {
     height: 100px;
     width: 100px;
-    animation-name: fly;
-    animation-duration: var(--animation-duration);
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
 
     position: absolute;
-    left: var(--left-value);
+    left: 0;
+
+    animation: fly 2s infinite cubic-bezier(.17,.67,.85,.19);
+
+    /* animation-name: fly;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.17,.67,.85,.19); */
 }
 
+@keyframes fly {
+    0% {
+        top: 500px;
+        left: 400px;
+    }
+    35% {
+        top: 320px;
+        border: blue solid 1px;
+    }
+    100% {
+        top: 100px;
+        left: 20px;
+    }
+    /* from {
+        top: 500px;
+    }
+    to {
+        top: 0;
+    } */
+}
+
+
+/* TODO animate the endcard so it flies up into the game */
 #endCard {
     margin: 0 auto;
     display: block;
     position: relative;
     top: 0;
+
     transition: top 2s;
 }
 
@@ -52,17 +97,7 @@ h1 {
     top: -500px;
 }
 
-
 #chart-container {
     width: 600px;
     margin: 0 auto;
-}
-
-@keyframes fly {
-    from {
-        top: 600px;
-    }
-    to {
-        top: 150px;
-    }
 }
